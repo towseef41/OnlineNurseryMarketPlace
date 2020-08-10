@@ -1,0 +1,66 @@
+{%  extends 'store/main.html' %}
+
+{% block content %}
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'dashboard' %}">
+                  <span data-feather="home"></span>
+                  Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'orders' %}">
+                  <span data-feather="file"></span>
+                  Orders
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'addproduct' %}">
+                  <span data-feather="shopping-cart"></span>
+                  Add Product
+                </a>
+              </li>
+   
+            </ul>
+          </div>
+        </nav>
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Add Product</h1>
+          </div>
+		  <br>
+      {% for message in messages %}
+      <p id="messages">{{message}}</p>
+      {% endfor %}
+    <div class="form">
+     <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %} 
+      {{form.name.label}}
+      <br>
+      {{form.name}}
+      <br>
+      {{form.description.label}}
+      <br>
+      {{form.description}}
+      <br>
+      {{form.price.label}}
+      <br>
+      {{form.price}}
+      <br>
+      {{form.image.label}}
+      <br>
+      {{form.image}}
+      <br>
+      <br>
+      <input class="btn btn-primary" type="submit" value="Add Product">
+      </form>
+
+    </div>
+      
+
+{% endblock %}
